@@ -1,45 +1,56 @@
 console.log("Hello World")
 
-//First way that i did it
-function getComputerChoice(max) {
-    const choice = Math.floor(Math.random() * max)
-    if (choice === 0) {
-        return "Rock";
-    } else if (choice === 1) {
-        return "Paper";
-    } else {
-        return "Scissors";
-    }
-}
-
-console.log(getComputerChoice(3))
+let humanScore = 0;
+let computerScore = 0;
 
 //second way that you can do it
-function getComputerChoiceTwo() {
-    const choice = Math.random() * 10;
-    if (choice <= 3) {
-        return "Rock";
-    } else if (choice > 3 && choice <= 6) {
-        return "Paper";
+function getComputerChoice(max) {
+    const choice = Math.floor(Math.random() * max);
+    if (choice === 0) {
+        return "ROCK";
+    } else if (choice === 1) {
+        return "PAPER";
     } else {
-        return "Scissors";
+        return "SCISSORS";
     }
 }
-
-console.log(getComputerChoiceTwo());
 
 //getting the human choice
 function getHumanChoice() {
-    const choice = prompt("Your choice")
-    if (choice == "rock" || choice == "Rock") {
-        return "Rock";
-    } else if (choice == "paper" || choice == "Paper") {
-        return "Paper";
-    } else if (choice == "scissors" || choice == "Scissors") {
-        return "Scissors";
+    const choice = prompt("Your choice");
+    return choice;
+}
+
+//Let's play!!!
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice.toUpperCase() === computerChoice) {
+        console.log("It's a tie! Both choose the same item.");
+    } else if (humanChoice.toUpperCase() === "ROCK") {
+        if (computerChoice === "SCISSORS") {
+            console.log("You won this round! Rock beats scissors.");
+        } else if (computerChoice === "PAPER") {
+            console.log("You lose this round. Paper beats rock.");
+        }
+    } else if (humanChoice.toUpperCase() === "PAPER") {
+        if (computerChoice === "ROCK") {
+            console.log("You won this round! Paper beats rock.");
+        } else if (computerChoice === "SCISSORS") {
+            console.log("You lose this round. Scissors beats paper.");
+        }
+    } else if (humanChoice.toUpperCase() === "SCISSORS") {
+        if (computerChoice === "ROCK") {
+            console.log("You lose this round! Rock beats scissors.");
+        } else if (computerChoice === "PAPER") {
+            console.log("You won this round! Scissors beats paper.");
+        }
     } else {
-        alert("You need to choose Rock, Paper or Scissors.");
-        getHumanChoice();
+        alert("You need to choose: Rock, Paper or Scissors.");
     }
 }
-console.log(getHumanChoice())
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice(3);
+
+playRound(humanSelection, computerSelection);
+
+console.log(computerSelection);
